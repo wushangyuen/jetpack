@@ -100,8 +100,9 @@ class Jetpack_Core_Json_Api_Endpoints {
 		) );
 
 		register_rest_route( 'jetpack/v4', '/jitm', array(
-			'methods'  => WP_REST_Server::CREATABLE,
-			'callback' => __CLASS__ . '::delete_jitm_message'
+			'methods'             => WP_REST_Server::CREATABLE,
+			'callback'            => __CLASS__ . '::delete_jitm_message',
+			'permission_callback' => __CLASS__ . '::delete_jitm_message_permission_callback',
 		) );
 
 		// Authorize a remote user
@@ -681,8 +682,9 @@ class Jetpack_Core_Json_Api_Endpoints {
 	}
 
 	/**
-	 * Dismisses a jitm
-	 * @param $request WP_REST_Request The request
+	 * Dismisses a jitm.
+	 *
+	 * @param WP_REST_Request $request The request.
 	 *
 	 * @return bool Always True
 	 */
@@ -866,6 +868,21 @@ class Jetpack_Core_Json_Api_Endpoints {
 
 		return new WP_Error( 'invalid_user_permission_jetpack_disconnect', self::$user_permissions_error_msg, array( 'status' => self::rest_authorization_required_code() ) );
 
+	}
+
+	/**
+	 * Verify that the user can dismiss JITM messages.
+	 *
+	 * @since 8.3.0
+	 *
+	 * @return bool|WP_Error True if user is able to dismiss JITM messages.
+	 */
+	public static function delete_jitm_message_permission_callback() {
+		if ( current_user_can( 'read' ) ) {
+			return true;
+		}
+
+		return new WP_Error( 'invalid_user_permission_jetpack_delete_jitm_message', self::$user_permissions_error_msg, array( 'status' => self::rest_authorization_required_code() ) );
 	}
 
 	/**
