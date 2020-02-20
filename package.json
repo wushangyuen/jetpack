@@ -76,7 +76,7 @@
 		"test-dangerci-and-adminpage-and-extensions": "yarn danger ci && yarn test-adminpage && yarn test-extensions",
 		"test-search": "jest modules/search",
 		"reformat-files": "npm-run-all --parallel --continue-on-error reformat-files:*",
-		"reformat-files:scss": "npm run -s lint:scss -- --fix || exit 0",
+		"reformat-files:scss": "yarn lint:scss --fix || exit 0",
 		"reformat-files:js": "./node_modules/.bin/prettier --ignore-path .eslintignore --write \"**/*.{js,jsx,json}\"",
 		"version-packages": "bash ./bin/version-packages.sh"
 	},
