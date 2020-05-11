@@ -33,8 +33,6 @@ describe( 'Connection', () => {
 	} );
 
 	afterAll( async () => {
-		await execWpCommand( 'wp config set JETPACK_SHOULD_USE_CONNECTION_IFRAME false' );
-		await execWpCommand( 'wp plugin activate e2e-plan-data-interceptor' );
 		await resetWordpressInstall();
 	} );
 
