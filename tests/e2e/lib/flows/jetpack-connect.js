@@ -79,12 +79,12 @@ async function doClassicConnection( mockPlanData ) {
 	await ( await MyPlanPage.init( page ) ).returnToWPAdmin();
 }
 
-export async function doInPlaceConnection() {
+export async function doInPlaceConnection( plan = 'free' ) {
 	const jetpackPage = await JetpackPage.init( page );
 	await jetpackPage.connect();
 
 	await ( await InPlaceAuthorizeFrame.init( page ) ).approve();
-	await ( await InPlacePlansPage.init( page ) ).selectFreePlan();
+	await ( await InPlacePlansPage.init( page ) ).select( plan );
 }
 
 export async function syncJetpackPlanData( plan, mockPlanData = true ) {
@@ -112,7 +112,7 @@ export async function syncJetpackPlanData( plan, mockPlanData = true ) {
 	}
 }
 
-async function loginToWpSite( mockPlanData ) {
+export async function loginToWpSite( mockPlanData ) {
 	const siteUrl = getNgrokSiteUrl();
 	const host = new URL( siteUrl ).host;
 	await ( await WPLoginPage.visit( page, siteUrl + '/wp-login.php' ) ).login();
@@ -121,7 +121,7 @@ async function loginToWpSite( mockPlanData ) {
 	}
 }
 
-async function loginToWpcomIfNeeded( wpcomUser, mockPlanData ) {
+export async function loginToWpcomIfNeeded( wpcomUser, mockPlanData ) {
 	// Logs in to WPCOM
 	const login = await LoginPage.visit( page );
 	if ( ! mockPlanData ) {
