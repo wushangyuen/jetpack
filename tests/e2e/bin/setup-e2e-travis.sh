@@ -175,6 +175,11 @@ if [ "${1}" == "reset_wp" ]; then
 	wp --path=$WP_CORE_DIR plugin activate jetpack
 	wp --path=$WP_CORE_DIR plugin activate e2e-plan-data-interceptor.php
 
+	# NOTE: Force classic connection flow
+	# https://github.com/Automattic/jetpack/pull/13288
+	wp --path=$WP_CORE_DIR config set JETPACK_SHOULD_USE_CONNECTION_IFRAME false --raw --type=constant
+
+
 
 	# create a debug.log file
 	touch $WP_CORE_DIR/wp-content/debug.log
