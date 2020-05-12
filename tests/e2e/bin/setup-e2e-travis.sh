@@ -116,14 +116,14 @@ setup_nginx() {
 
 setup_wp_config() {
 	echo "Setting other wp-config.php constants..."
-	wp --allow-root config set WP_DEBUG true --raw --type=constant
-	wp --allow-root config set WP_DEBUG_LOG true --raw --type=constant
-	wp --allow-root config set WP_DEBUG_DISPLAY false --raw --type=constant
-	wp --allow-root config set JETPACK_BETA_BLOCKS true --raw --type=constant
+	wp --path=$WP_CORE_DIR config set WP_DEBUG true --raw --type=constant
+	wp --path=$WP_CORE_DIR config set WP_DEBUG_LOG true --raw --type=constant
+	wp --path=$WP_CORE_DIR config set WP_DEBUG_DISPLAY false --raw --type=constant
+	wp --path=$WP_CORE_DIR config set JETPACK_BETA_BLOCKS true --raw --type=constant
 
 	# NOTE: Force classic connection flow
 	# https://github.com/Automattic/jetpack/pull/13288
-	wp --allow-root config set JETPACK_SHOULD_USE_CONNECTION_IFRAME false --raw --type=constant
+	wp --path=$WP_CORE_DIR config set JETPACK_SHOULD_USE_CONNECTION_IFRAME false --raw --type=constant
 }
 
 install_wp() {
