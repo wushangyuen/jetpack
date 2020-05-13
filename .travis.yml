@@ -71,7 +71,7 @@ matrix:
     after_script:
       - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t clover -p /tmp/wordpress-previous/src/wp-content/plugins/jetpack
 
-  - php: "7.0"
+  - php: "7.4"
     name: "E2E tests"
     # Since build secrets are not available for forks, we would not be able to (and don't want) decrypt the config file
     # so we just skip the E2E job all together
@@ -100,7 +100,7 @@ matrix:
     name: "Legacy full sync"
     env: LEGACY_FULL_SYNC=1 WP_BRANCH=latest
 
-  - php: "7.2"
+  - php: "7.4"
     name: "E2E tests 2"
     # Since build secrets are not available for forks, we would not be able to (and don't want) decrypt the config file
     # so we just skip the E2E job all together
