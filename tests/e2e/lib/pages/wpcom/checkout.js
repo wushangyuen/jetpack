@@ -14,9 +14,6 @@ export default class CheckoutPage extends Page {
 	}
 
 	async processPurchase( cardDetails ) {
-		const filePath = await takeScreenshot( 'zzz', 'qqq' );
-		await sendFileToSlack( filePath );
-
 		await this.payWithStoredCardIfPossible( cardDetails );
 		await this.submitPaymentDetails();
 		return await this.waitToDisappear();
@@ -45,6 +42,10 @@ export default class CheckoutPage extends Page {
 		const paymentButtonSelector = '.credit-card-payment-box button.is-primary:not([disabled])';
 
 		await waitForSelector( this.page, disabledPaymentButton, { hidden: true } );
+
+		const filePath = await takeScreenshot( 'zzz', 'qqq' );
+		await sendFileToSlack( filePath );
+
 		await waitAndClick( this.page, paymentButtonSelector );
 		return await this.waitForPaymentProcessing();
 	}
