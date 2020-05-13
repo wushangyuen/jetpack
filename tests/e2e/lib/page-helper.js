@@ -57,7 +57,9 @@ export async function waitForSelector( page, selector, options = {} ) {
  */
 export async function waitAndClick( page, selector, options = { visible: true } ) {
 	await waitForSelector( page, selector, options );
-	return await page.click( selector, options );
+	await page.click( selector, options );
+
+	logger.info( `Clicked on element by locator: ${ selector }.` );
 }
 
 /**
@@ -74,7 +76,7 @@ export async function waitAndType( page, selector, value, options = { visible: t
 	await pressKeyWithModifier( 'primary', 'a' );
 	// await el.click( { clickCount: 3 } );
 	await page.waitFor( 300 );
-	await el.type( value, options );
+	return await el.type( value, options );
 }
 
 /**
