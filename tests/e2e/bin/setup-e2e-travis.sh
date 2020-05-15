@@ -63,7 +63,7 @@ start_ngrok() {
 			$NGROK_CMD authtoken $NGROK_KEY
 	fi
 
- $NGROK_CMD http -log=stdout 80 > /dev/null &
+ $NGROK_CMD http -log=stdout 80
 
 	sleep 3
 	WP_SITE_URL=$(get_ngrok_url)
