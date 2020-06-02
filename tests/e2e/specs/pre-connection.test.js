@@ -11,7 +11,7 @@ import { execWpCommand } from '../lib/utils-helper';
 describe( 'Jetpack pre-connection', () => {
 	catchBeforeAll( async () => {
 		await execWpCommand( 'wp option delete jetpack_private_options' );
-		page.reload();
+		await page.reload();
 	} );
 
 	afterAll( async () => {
