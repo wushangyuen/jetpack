@@ -53,7 +53,7 @@ const defaultErrorHandler = async ( error, name ) => {
  * @param {*} callback
  * @param {*} errorHandler
  */
-export const catchBeforeAll = async ( callback, errorHandler = defaultErrorHandler ) => {
+export const catchBeforeAll = ( callback, errorHandler = defaultErrorHandler ) =>
 	beforeAll( async () => {
 		try {
 			await callback();
@@ -61,7 +61,6 @@ export const catchBeforeAll = async ( callback, errorHandler = defaultErrorHandl
 			await errorHandler( error, 'beforeAll' );
 		}
 	} );
-};
 
 async function setupBrowser() {
 	const userAgent = await browser.userAgent();
