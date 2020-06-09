@@ -183,11 +183,26 @@ export default function withMedia() {
 					<Modal
 						onRequestClose={ onClose }
 						title={ isCopying ? __( 'Copying Media', 'jetpack' ) : __( 'Select Media', 'jetpack' ) }
+						aria={ {
+							describedby: 'jetpack-external-media-browser__description',
+						} }
 						className={ classes }
 					>
 						{ /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */ }
 						<div onMouseDown={ this.stopPropagation }>
 							{ noticeUI }
+
+							<p
+								id="jetpack-external-media-browser__description"
+								class="jetpack-external-media-browser--visually-hidden"
+							>
+								{ isCopying
+									? __(
+											'When the media is finished copying and inserting, you will be returned to the editor.',
+											'jetpack'
+									  )
+									: __( 'Select the media you would like to insert into the editor.', 'jetpack' ) }
+							</p>
 
 							<OriginalComponent
 								getMedia={ this.getMedia }
