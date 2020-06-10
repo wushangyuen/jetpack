@@ -1,0 +1,52 @@
+/**
+ * Editor styles for Tweet
+ */
+
+.wp-block-jetpack-tweet {
+
+	.wp-block-jetpack-tweet__media {
+		display: flex;
+		flex-wrap: wrap;
+
+		.wp-block-jetpack-tweet__media-item {
+			min-width: calc( 50% - 10px );
+			margin: 10px 10px 0 0;
+			flex: 1 0 45%;
+			box-sizing: border-box;
+			contain: paint;
+
+			.wp-block-jetpack-tweet__media-item-remove {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				color: #fff;
+				background-color: #1e1e1e;
+				height: 24px;
+				width: 24px;
+				min-width: initial;
+				border-radius: 12px;
+				display: none;
+			}
+
+			&:hover {
+				box-shadow: 0 0 0 1px #007cba;
+
+				.wp-block-jetpack-tweet__media-item-remove {
+					display: flex;
+				}
+			}
+		}
+	}
+
+	.block-editor-media-placeholder {
+		padding: 12px;
+
+		.components-placeholder__label {
+			display: none;
+		}
+
+		.components-button {
+			margin-bottom: 0;
+		}
+	}
+}

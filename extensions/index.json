@@ -32,7 +32,7 @@
 		"videopress",
 		"wordads"
 	],
-	"beta": [ "amazon", "gathering-tweetstorms" ],
+	"beta": [ "amazon", "gathering-tweetstorms", "tweet" ],
 	"experimental": [ "seo" ],
 	"no-post-editor": [
 		"business-hours",
