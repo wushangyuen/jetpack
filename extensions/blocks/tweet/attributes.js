@@ -1,3 +1,9 @@
 export default {
-	// @TODO - Add block attributes here
+	tweet: {
+		type: 'string',
+	},
+	media: {
+		type: 'array',
+		default: [],
+	},
 };

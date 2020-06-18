@@ -21,19 +21,18 @@ import icon from './icon';
 import './editor.scss';
 
 function TweetEdit( { attributes, className, noticeOperations, noticeUI, setAttributes } ) {
-	/**
-	 * Write the block editor UI.
-	 *
-	 * @returns {object} The UI displayed when user edits this block.
-	 */
+	const { tweet, media } = attributes;
+
 	const [ notice, setNotice ] = useState();
-	const [ tweetText, setTweetText ] = useState( '' );
-	const [ media, setMedia ] = useState( [] );
 
 	/* Call this function when you want to show an error in the placeholder. */
 	const setErrorNotice = () => {
 		noticeOperations.removeAllNotices();
 		noticeOperations.createErrorNotice( __( 'Put error message here.', 'jetpack' ) );
+	};
+
+	const onTweetChange = newTweet => {
+		setAttributes( { tweet: newTweet } );
 	};
 
 	const onSelectMedia = newMedia => {
@@ -46,7 +45,7 @@ function TweetEdit( { attributes, className, noticeOperations, noticeUI, setAttr
 				);
 			}
 
-			setMedia( addedMedia.slice( 0, 1 ) );
+			setAttributes( { media: addedMedia.slice( 0, 1 ) } );
 			return;
 		}
 
@@ -55,7 +54,7 @@ function TweetEdit( { attributes, className, noticeOperations, noticeUI, setAttr
 				noticeOperations.createErrorNotice( __( 'Only one GIF is allowed per tweet.', 'jetpack' ) );
 			}
 
-			setMedia( addedMedia.slice( 0, 1 ) );
+			setAttributes( { media: addedMedia.slice( 0, 1 ) } );
 			return;
 		}
 
@@ -79,11 +78,11 @@ function TweetEdit( { attributes, className, noticeOperations, noticeUI, setAttr
 			);
 		}
 
-		setMedia( filteredMedia.slice( 0, 4 ) );
+		setAttributes( { media: filteredMedia.slice( 0, 4 ) } );
 	};
 
 	const removeMediaItem = item => {
-		setMedia( media.filter( checkItem => checkItem !== item ) );
+		setAttributes( { media: media.filter( checkItem => checkItem !== item ) } );
 	};
 
 	const generateMediaPreview = item => {
@@ -100,7 +99,8 @@ function TweetEdit( { attributes, className, noticeOperations, noticeUI, setAttr
 						<video src={ item.url } />
 					</Disabled>
 				);
-			/* eslint-enable jsx-a11y/media-has-caption */
+				/* eslint-enable jsx-a11y/media-has-caption */
+				break;
 		}
 
 		return (
@@ -131,7 +131,8 @@ function TweetEdit( { attributes, className, noticeOperations, noticeUI, setAttr
 				placeholder={ __( 'Add a tweet', 'jetpack' ) }
 				allowedFormats={ [] }
 				withoutInteractiveFormatting={ true }
-				onChange={ setTweetText }
+				content={ tweet }
+				onChange={ onTweetChange }
 			/>
 			<div className="wp-block-jetpack-tweet__media">
 				{ media.map( item => generateMediaPreview( item ) ) }

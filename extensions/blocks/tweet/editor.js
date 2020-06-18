@@ -20,8 +20,6 @@ import domReady from '@wordpress/dom-ready';
 import registerJetpackBlock from '../../shared/register-jetpack-block';
 import { name, settings } from '.';
 
-const validBlocks = [ 'core/paragraph', 'core/image', 'core/gallery', 'core/video' ];
-
 registerJetpackBlock( name, settings );
 
 const unregisterOtherBlocks = () => {
@@ -29,17 +27,11 @@ const unregisterOtherBlocks = () => {
 		if ( blockType.name !== `jetpack/${ name }` ) {
 			unregisterBlockType( blockType.name );
 		}
-
-		if ( validBlocks.includes( blockType.name ) ) {
-			registerBlockType( blockType.name, {
-				...blockType,
-				parent: [ 'jetpack/twitter' ],
-			} );
-		}
 	} );
 };
 
 const convertPost = () => {
+	registerJetpackBlock( name, settings );
 	unregisterOtherBlocks();
 
 	dispatch( 'core/editor' ).editPost( { meta: { jetpack_is_tweetstorm: true } } );

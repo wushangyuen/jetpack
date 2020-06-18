@@ -37,6 +37,8 @@ function register_block() {
 			)
 		);
 	}
+
+	add_filter( 'jetpack_sync_post_meta_whitelist', __NAMESPACE__ . '\allow_sync_post_meta' );
 }
 add_action( 'init', __NAMESPACE__ . '\register_block' );
 
@@ -59,4 +61,16 @@ function load_assets( $attr, $content ) {
 		esc_attr( Jetpack_Gutenberg::block_classes( FEATURE_NAME, $attr ) ),
 		$content
 	);
+}
+
+/**
+ * Sync the post meta.
+ *
+ * @param array $post_meta The post meta fields to be synced.
+ *
+ * @return array The post meta fields to be synced, including ours.
+ */
+function allow_sync_post_meta( $post_meta ) {
+	$post_meta[] = 'jetpack_is_tweetstorm';
+	return $post_meta;
 }
