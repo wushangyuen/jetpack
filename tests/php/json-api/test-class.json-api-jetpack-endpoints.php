@@ -104,4 +104,39 @@ class WP_Test_Jetpack_Json_Api_Endpoints extends WP_UnitTestCase {
 			$response->feed_url
 		);
 	}
+
+	/**
+	 * Unit test for the `/sites/%s` endpoint.
+	 */
+	public function test_get_site() {
+		global $blog_id;
+
+		$endpoint = new WPCOM_JSON_API_GET_Site_Endpoint(
+			array(
+				'description'             => 'Get information about a site.',
+				'group'                   => 'sites',
+				'stat'                    => 'sites:X',
+				'allowed_if_flagged'      => true,
+				'method'                  => 'GET',
+				'max_version'             => '1.1',
+				'new_version'             => '1.2',
+				'path'                    => '/sites/%s',
+				'path_labels'             => array(
+					'$site' => '(int|string) Site ID or domain',
+				),
+				'allow_jetpack_site_auth' => true,
+				'query_parameters'        => array(
+					'context' => false,
+					'options' => '(string) Optional. Returns specified options only. Comma-separated list. Example: options=login_url,timezone',
+				),
+				'response_format'         => WPCOM_JSON_API_GET_Site_Endpoint::$site_format,
+				'example_request'         => 'https://public-api.wordpress.com/rest/v1/sites/en.blog.wordpress.com/',
+			)
+		);
+
+		$response = $endpoint->callback( '', $blog_id );
+
+		$this->assertTrue( $response['jetpack'] );
+		$this->assertTrue( $response['jetpack_connection'] );
+	}
 }
