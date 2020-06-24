@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58f387a3c22ca2f1f72bbe45c61535e3",
+    "content-hash": "0677e35f7322ebbf91bbbd64f276a5e0",
     "packages": [
         {
             "name": "automattic/jetpack-abtest",
@@ -339,6 +339,37 @@
                 "GPL-2.0-or-later"
             ],
             "description": "A logo for Jetpack"
+        },
+        {
+            "name": "automattic/jetpack-mc-stats",
+            "version": "dev-add/mc-sats-dependency",
+            "dist": {
+                "type": "path",
+                "url": "./packages/mc-stats",
+                "reference": "41474ea1787d3a2fda4aa70dc361974ff94ab072"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "scripts": {
+                "phpunit": [
+                    "@composer install",
+                    "./vendor/phpunit/phpunit/phpunit --colors=always"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Used to bump stats using http://pixel.wp.com/g.gif.",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "automattic/jetpack-options",
@@ -1022,6 +1053,7 @@
         "automattic/jetpack-error": 20,
         "automattic/jetpack-jitm": 20,
         "automattic/jetpack-logo": 20,
+        "automattic/jetpack-mc-stats": 20,
         "automattic/jetpack-options": 20,
         "automattic/jetpack-partner": 20,
         "automattic/jetpack-redirect": 20,
