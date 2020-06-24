@@ -377,9 +377,9 @@ class Jetpack {
 	public static $plugin_upgrade_lock_key = 'jetpack_upgrade_lock';
 
 	/**
-	 * Holds an instance of Automattic\Jetpack\Stats
+	 * Holds an instance of Automattic\Jetpack\Mc_Stats
 	 *
-	 * @var Automattic\Jetpack\Stats
+	 * @var Automattic\Jetpack\Mc_Stats
 	 */
 	public $stats_instance;
 
@@ -4633,7 +4633,7 @@ endif;
 	 */
 	private function initialize_stats() {
 		if ( is_null( $this->stats_instance ) ) {
-			$this->stats_instance = new Automattic\Jetpack\Stats();
+			$this->stats_instance = new Automattic\Jetpack\Mc_Stats();
 		}
 	}
 
@@ -4672,7 +4672,7 @@ endif;
 	 */
 	static function do_server_side_stat( $args ) {
 		$url            = self::build_stats_url( $args );
-		$stats_instance = new Automattic\Jetpack\Stats();
+		$stats_instance = new Automattic\Jetpack\Mc_Stats();
 		return $stats_instance->do_server_side_stat( $url );
 	}
 
@@ -4685,7 +4685,7 @@ endif;
 	 */
 	static function build_stats_url( $args ) {
 
-		$stats_instance = new Automattic\Jetpack\Stats();
+		$stats_instance = new Automattic\Jetpack\Mc_Stats();
 		return $stats_instance->build_stats_url( $args );
 
 	}
