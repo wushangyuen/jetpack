@@ -1111,7 +1111,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 			'isStaging'    => $status->is_staging_site(),
 			'isRegistered' => Jetpack::connection()->is_registered(),
 			'devMode'      => array(
-				'isActive' => $status->is_development_mode(),
+				'isActive' => $status->is_offline_mode(),
 				'constant' => defined( 'JETPACK_DEV_DEBUG' ) && JETPACK_DEV_DEBUG,
 				'url'      => site_url() && false === strpos( site_url(), '.' ),
 				'filter'   => apply_filters( 'jetpack_development_mode', false ),
