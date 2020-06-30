@@ -284,7 +284,7 @@ class Manager {
 	 * @param String        $password password string.
 	 * @return WP_User|Mixed authenticated user or error.
 	 */
-	public function authenticate_jetpack( $user, $username, $password ) {
+	public function authenticate_jetpack( $user, $username, $password ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 		if ( is_a( $user, '\\WP_User' ) ) {
 			return $user;
 		}
@@ -1105,7 +1105,7 @@ class Manager {
 	 * @param int      $user_id The user ID.
 	 * @param array    $args    Adds the context to the cap. Typically the object ID.
 	 */
-	public function jetpack_connection_custom_caps( $caps, $cap, $user_id, $args ) {
+	public function jetpack_connection_custom_caps( $caps, $cap, $user_id, $args ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 		$is_development_mode = ( new Status() )->is_development_mode();
 		switch ( $cap ) {
 			case 'jetpack_connect':
