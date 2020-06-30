@@ -126,7 +126,7 @@ export class DevModeNotice extends React.Component {
 			}
 
 			const text = __(
-				'Currently in {{a}}Development Mode{{/a}} (some features are disabled) because: {{reasons/}}',
+				'Currently in {{a}}Offline Mode{{/a}} (some features are disabled) because: {{reasons/}}',
 				{
 					components: {
 						a: (

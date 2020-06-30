@@ -1695,7 +1695,7 @@ class Jetpack {
 		if ( ( new Status() )->is_offline_mode() ) {
 			$notice = sprintf(
 				/* translators: %s is a URL */
-				__( 'In <a href="%s" target="_blank">Development Mode</a>:', 'jetpack' ),
+				__( 'In <a href="%s" target="_blank">Offline Mode</a>:', 'jetpack' ),
 				Redirect::get_url( 'jetpack-support-development-mode' )
 			);
 
@@ -3033,7 +3033,7 @@ class Jetpack {
 				return false;
 			}
 
-			// If we're not connected but in development mode, make sure the module doesn't require a connection
+			// If we're not connected but in offline mode, make sure the module doesn't require a connection.
 			if ( $is_offline_mode && $module_data['requires_connection'] ) {
 				return false;
 			}
@@ -6937,7 +6937,7 @@ endif;
 			wp_enqueue_style( 'jetpack-dashboard-widget', plugins_url( 'css/dashboard-widget.css', JETPACK__PLUGIN_FILE ), array(), JETPACK__VERSION );
 			wp_style_add_data( 'jetpack-dashboard-widget', 'rtl', 'replace' );
 
-			// If we're inactive and not in development mode, sort our box to the top.
+			// If we're inactive and not in offline mode, sort our box to the top.
 			if ( ! self::is_active() && ! ( new Status() )->is_offline_mode() ) {
 				global $wp_meta_boxes;
 
