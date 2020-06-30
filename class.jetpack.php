@@ -1073,7 +1073,7 @@ class Jetpack {
 	 * @param array    $args    Adds the context to the cap. Typically the object ID.
 	 */
 	public function jetpack_custom_caps( $caps, $cap, $user_id, $args ) {
-		$is_development_mode = ( new Status() )->is_development_mode();
+		$is_offline_mode = ( new Status() )->is_offline_mode();
 		switch ( $cap ) {
 			case 'jetpack_manage_modules':
 			case 'jetpack_activate_modules':
@@ -1097,7 +1097,7 @@ class Jetpack {
 				$caps = array( 'manage_sites' );
 				break;
 			case 'jetpack_admin_page':
-				if ( $is_development_mode ) {
+				if ( $is_offline_mode ) {
 					$caps = array( 'manage_options' );
 					break;
 				} else {
@@ -1642,12 +1642,12 @@ class Jetpack {
 	 * This static method is being left here intentionally without the use of _deprecated_function(), as other plugins
 	 * and themes still use it, and we do not want to flood them with notices.
 	 *
-	 * Please use Automattic\Jetpack\Status()->is_development_mode() instead.
+	 * Please use Automattic\Jetpack\Status()->is_offline_mode() instead.
 	 *
 	 * @deprecated since 8.0.
 	 */
 	public static function is_development_mode() {
-		return ( new Status() )->is_development_mode();
+		return ( new Status() )->is_offline_mode();
 	}
 
 	/**
@@ -1666,11 +1666,11 @@ class Jetpack {
 	}
 
 	/**
-	 * Determines reason for Jetpack development mode.
+	 * Determines reason for Jetpack offline mode.
 	 */
 	public static function development_mode_trigger_text() {
-		if ( ! ( new Status() )->is_development_mode() ) {
-			return __( 'Jetpack is not in Development Mode.', 'jetpack' );
+		if ( ! ( new Status() )->is_offline_mode() ) {
+			return __( 'Jetpack is not in Offline Mode.', 'jetpack' );
 		}
 
 		if ( defined( 'JETPACK_DEV_DEBUG' ) && JETPACK_DEV_DEBUG ) {
@@ -1687,12 +1687,12 @@ class Jetpack {
 
 	}
 	/**
-	 * Get Jetpack development mode notice text and notice class.
+	 * Get Jetpack offline mode notice text and notice class.
 	 *
-	 * Mirrors the checks made in Automattic\Jetpack\Status->is_development_mode
+	 * Mirrors the checks made in Automattic\Jetpack\Status->is_offline_mode
 	 */
 	public static function show_development_mode_notice() {
-		if ( ( new Status() )->is_development_mode() ) {
+		if ( ( new Status() )->is_offline_mode() ) {
 			$notice = sprintf(
 				/* translators: %s is a URL */
 				__( 'In <a href="%s" target="_blank">Development Mode</a>:', 'jetpack' ),
@@ -1859,10 +1859,10 @@ class Jetpack {
 	 * Loads the currently active modules.
 	 */
 	public static function load_modules() {
-		$is_development_mode = ( new Status() )->is_development_mode();
+		$is_offline_mode = ( new Status() )->is_offline_mode();
 		if (
 			! self::is_active()
-			&& ! $is_development_mode
+			&& ! $is_offline_mode
 			&& ! self::is_onboarding()
 			&& (
 				! is_multisite()
@@ -1905,8 +1905,8 @@ class Jetpack {
 		}
 
 		foreach ( $modules as $index => $module ) {
-			// If we're in dev mode, disable modules requiring a connection
-			if ( $is_development_mode ) {
+			// If we're in offline mode, disable modules requiring a connection.
+			if ( $is_offline_mode ) {
 				// Prime the pump if we need to
 				if ( empty( $modules_data[ $module ] ) ) {
 					$modules_data[ $module ] = self::get_module( $module );
@@ -2244,7 +2244,7 @@ class Jetpack {
 	}
 
 	public static function activate_new_modules( $redirect = false ) {
-		if ( ! self::is_active() && ! ( new Status() )->is_development_mode() ) {
+		if ( ! self::is_active() && ! ( new Status() )->is_offline_mode() ) {
 			return;
 		}
 
@@ -3027,14 +3027,14 @@ class Jetpack {
 
 		$module_data = self::get_module( $module );
 
-		$is_development_mode = ( new Status() )->is_development_mode();
+		$is_offline_mode = ( new Status() )->is_offline_mode();
 		if ( ! self::is_active() ) {
-			if ( ! $is_development_mode && ! self::is_onboarding() ) {
+			if ( ! $is_offline_mode && ! self::is_onboarding() ) {
 				return false;
 			}
 
 			// If we're not connected but in development mode, make sure the module doesn't require a connection
-			if ( $is_development_mode && $module_data['requires_connection'] ) {
+			if ( $is_offline_mode && $module_data['requires_connection'] ) {
 				return false;
 			}
 		}
@@ -3587,8 +3587,8 @@ p {
 			self::plugin_initialize();
 		}
 
-		$is_development_mode = ( new Status() )->is_development_mode();
-		if ( ! self::is_active() && ! $is_development_mode ) {
+		$is_offline_mode = ( new Status() )->is_offline_mode();
+		if ( ! self::is_active() && ! $is_offline_mode ) {
 			Jetpack_Connection_Banner::init();
 		} elseif ( false === Jetpack_Options::get_option( 'fallback_no_verify_ssl_certs' ) ) {
 			// Upgrade: 1.1 -> 1.1.1
@@ -3613,7 +3613,7 @@ p {
 		add_action( 'admin_enqueue_scripts', array( $this, 'deactivate_dialog' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( JETPACK__PLUGIN_DIR . 'jetpack.php' ), array( $this, 'plugin_action_links' ) );
 
-		if ( self::is_active() || $is_development_mode ) {
+		if ( self::is_active() || $is_offline_mode ) {
 			// Artificially throw errors in certain specific cases during plugin activation.
 			add_action( 'activate_plugin', array( $this, 'throw_error_on_activate_plugin' ) );
 		}
@@ -4006,7 +4006,7 @@ p {
 
 		$jetpack_home = array( 'jetpack-home' => sprintf( '<a href="%s">%s</a>', self::admin_url( 'page=jetpack' ), 'Jetpack' ) );
 
-		if ( current_user_can( 'jetpack_manage_modules' ) && ( self::is_active() || ( new Status() )->is_development_mode() ) ) {
+		if ( current_user_can( 'jetpack_manage_modules' ) && ( self::is_active() || ( new Status() )->is_offline_mode() ) ) {
 			return array_merge(
 				$jetpack_home,
 				array( 'settings' => sprintf( '<a href="%s">%s</a>', self::admin_url( 'page=jetpack#/settings' ), __( 'Settings', 'jetpack' ) ) ),
@@ -6230,7 +6230,7 @@ endif;
 	 * @return array|bool Array of options that are in a crisis, or false if everything is OK.
 	 */
 	public static function check_identity_crisis() {
-		if ( ! self::is_active() || ( new Status() )->is_development_mode() || ! self::validate_sync_error_idc_option() ) {
+		if ( ! self::is_active() || ( new Status() )->is_offline_mode() || ! self::validate_sync_error_idc_option() ) {
 			return false;
 		}
 
@@ -6743,7 +6743,7 @@ endif;
 		}
 
 		// We do not want to use the imploded file in dev mode, or if not connected
-		if ( ( new Status() )->is_development_mode() || ! self::is_active() ) {
+		if ( ( new Status() )->is_offline_mode() || ! self::is_active() ) {
 			if ( ! $travis_test ) {
 				return;
 			}
@@ -6938,7 +6938,7 @@ endif;
 			wp_style_add_data( 'jetpack-dashboard-widget', 'rtl', 'replace' );
 
 			// If we're inactive and not in development mode, sort our box to the top.
-			if ( ! self::is_active() && ! ( new Status() )->is_development_mode() ) {
+			if ( ! self::is_active() && ! ( new Status() )->is_offline_mode() ) {
 				global $wp_meta_boxes;
 
 				$dashboard = $wp_meta_boxes['dashboard']['normal']['core'];
@@ -6999,7 +6999,7 @@ endif;
 					<?php echo number_format_i18n( get_site_option( 'jetpack_protect_blocked_attempts', 0 ) ); ?>
 				</p>
 				<p><?php echo esc_html_x( 'Blocked malicious login attempts', '{#} Blocked malicious login attempts -- number is on a prior line, text is a caption.', 'jetpack' ); ?></p>
-			<?php elseif ( current_user_can( 'jetpack_activate_modules' ) && ! ( new Status() )->is_development_mode() ) : ?>
+			<?php elseif ( current_user_can( 'jetpack_activate_modules' ) && ! ( new Status() )->is_offline_mode() ) : ?>
 				<a href="
 				<?php
 				echo esc_url(
@@ -7362,14 +7362,14 @@ endif;
 	}
 
 	/**
-	 * Checks if a Jetpack site is both active and not in development.
+	 * Checks if a Jetpack site is both active and not in offline mode.
 	 *
-	 * This is a DRY function to avoid repeating `Jetpack::is_active && ! Automattic\Jetpack\Status->is_development_mode`.
+	 * This is a DRY function to avoid repeating `Jetpack::is_active && ! Automattic\Jetpack\Status->is_offline_mode`.
 	 *
 	 * @return bool True if Jetpack is active and not in development.
 	 */
 	public static function is_active_and_not_development_mode() {
-		if ( ! self::is_active() || ( new Status() )->is_development_mode() ) {
+		if ( ! self::is_active() || ( new Status() )->is_offline_mode() ) {
 			return false;
 		}
 		return true;
