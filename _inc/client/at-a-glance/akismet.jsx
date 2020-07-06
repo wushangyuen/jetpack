@@ -19,7 +19,7 @@ import restApi from 'rest-api';
 import QueryAkismetData from 'components/data/query-akismet-data';
 import { getAkismetData } from 'state/at-a-glance';
 import { getSitePlan } from 'state/site';
-import { isDevMode } from 'state/connection';
+import { isOfflineMode } from 'state/connection';
 import { getApiNonce, getUpgradeUrl } from 'state/initial-state';
 import JetpackBanner from 'components/jetpack-banner';
 
@@ -30,7 +30,7 @@ class DashAkismet extends Component {
 
 		// Connected props
 		akismetData: PropTypes.oneOfType( [ PropTypes.string, PropTypes.object ] ).isRequired,
-		isDevMode: PropTypes.bool.isRequired,
+		isOfflineMode: PropTypes.bool.isRequired,
 		upgradeUrl: PropTypes.string.isRequired,
 	};
 
@@ -38,7 +38,7 @@ class DashAkismet extends Component {
 		siteRawUrl: '',
 		siteAdminUrl: '',
 		akismetData: 'N/A',
-		isDevMode: '',
+		isOfflineMode: '',
 	};
 
 	trackActivateClick() {
@@ -182,7 +182,7 @@ class DashAkismet extends Component {
 					} ) }
 				</p>
 			</DashItem>,
-			! this.props.isDevMode && (
+			! this.props.isOfflineMode && (
 				<Card
 					key="moderate-comments"
 					className="jp-dash-item__manage-in-wpcom"
@@ -208,7 +208,7 @@ class DashAkismet extends Component {
 export default connect( state => ( {
 	akismetData: getAkismetData( state ),
 	sitePlan: getSitePlan( state ),
-	isDevMode: isDevMode( state ),
+	isOfflineMode: isOfflineMode( state ),
 	upgradeUrl: getUpgradeUrl( state, 'aag-akismet' ),
 	nonce: getApiNonce( state ),
 } ) )( DashAkismet );

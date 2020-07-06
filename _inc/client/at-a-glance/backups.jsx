@@ -19,7 +19,7 @@ import { getPlanClass, PLAN_JETPACK_PREMIUM } from 'lib/plans/constants';
 import { getSitePlan } from 'state/site';
 import { isPluginInstalled } from 'state/site/plugins';
 import { getVaultPressData } from 'state/at-a-glance';
-import { isDevMode } from 'state/connection';
+import { isOfflineMode } from 'state/connection';
 import { getUpgradeUrl, showBackups } from 'state/initial-state';
 
 /**
@@ -56,7 +56,7 @@ class DashBackups extends Component {
 		// Connected props
 		vaultPressData: PropTypes.any.isRequired,
 		sitePlan: PropTypes.object.isRequired,
-		isDevMode: PropTypes.bool.isRequired,
+		isOfflineMode: PropTypes.bool.isRequired,
 		isVaultPressInstalled: PropTypes.bool.isRequired,
 		upgradeUrl: PropTypes.string.isRequired,
 	};
@@ -66,7 +66,7 @@ class DashBackups extends Component {
 		getOptionValue: noop,
 		vaultPressData: '',
 		sitePlan: '',
-		isDevMode: false,
+		isOfflineMode: false,
 		isVaultPressInstalled: false,
 		rewindStatus: '',
 	};
@@ -215,13 +215,13 @@ class DashBackups extends Component {
 			return null;
 		}
 
-		if ( this.props.isDevMode ) {
+		if ( this.props.isOfflineMode ) {
 			return (
 				<div className="jp-dash-item__interior">
 					{ renderCard( {
 						className: 'jp-dash-item__is-inactive',
 						status: 'no-pro-uninstalled-or-inactive',
-						content: __( 'Unavailable in Dev Mode.' ),
+						content: __( 'Unavailable in Offline Mode.' ),
 					} ) }
 				</div>
 			);
@@ -247,7 +247,7 @@ export default connect( state => {
 		vaultPressData: getVaultPressData( state ),
 		sitePlan,
 		planClass: getPlanClass( sitePlan ),
-		isDevMode: isDevMode( state ),
+		isOfflineMode: isOfflineMode( state ),
 		isVaultPressInstalled: isPluginInstalled( state, 'vaultpress/vaultpress.php' ),
 		showBackups: showBackups( state ),
 		upgradeUrl: getUpgradeUrl( state, 'aag-backups' ),

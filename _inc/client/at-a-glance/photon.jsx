@@ -12,11 +12,11 @@ import getRedirectUrl from 'lib/jp-redirect';
  * Internal dependencies
  */
 import { isModuleAvailable } from 'state/modules';
-import { isDevMode } from 'state/connection';
+import { isOfflineMode } from 'state/connection';
 
 class DashPhoton extends Component {
 	static propTypes = {
-		isDevMode: PropTypes.bool.isRequired,
+		isOfflineMode: PropTypes.bool.isRequired,
 		isModuleAvailable: PropTypes.bool.isRequired,
 	};
 
@@ -52,8 +52,8 @@ class DashPhoton extends Component {
 				className="jp-dash-item__is-inactive"
 			>
 				<p className="jp-dash-item__description">
-					{ this.props.isDevMode
-						? __( 'Unavailable in Dev Mode' )
+					{ this.props.isOfflineMode
+						? __( 'Unavailable in Offline Mode' )
 						: __(
 								"{{a}}Activate{{/a}} to optimize image sizes and load images from Jetpack's fast global network of servers. This improves your site's performance on desktop and mobile devices.",
 								{
@@ -73,6 +73,6 @@ class DashPhoton extends Component {
 }
 
 export default connect( state => ( {
-	isDevMode: isDevMode( state ),
+	isOfflineMode: isOfflineMode( state ),
 	isModuleAvailable: isModuleAvailable( state, 'photon' ),
 } ) )( DashPhoton );

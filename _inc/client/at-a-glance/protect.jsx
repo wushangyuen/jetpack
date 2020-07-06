@@ -14,11 +14,11 @@ import getRedirectUrl from 'lib/jp-redirect';
 import QueryProtectCount from 'components/data/query-dash-protect';
 import { isModuleAvailable } from 'state/modules';
 import { getProtectCount } from 'state/at-a-glance';
-import { isDevMode } from 'state/connection';
+import { isOfflineMode } from 'state/connection';
 
 class DashProtect extends Component {
 	static propTypes = {
-		isDevMode: PropTypes.bool.isRequired,
+		isOfflineMode: PropTypes.bool.isRequired,
 		protectCount: PropTypes.any.isRequired,
 		isModuleAvailable: PropTypes.bool.isRequired,
 	};
@@ -73,8 +73,8 @@ class DashProtect extends Component {
 				className="jp-dash-item__is-inactive"
 			>
 				<p className="jp-dash-item__description">
-					{ this.props.isDevMode
-						? __( 'Unavailable in Dev Mode' )
+					{ this.props.isOfflineMode
+						? __( 'Unavailable in Offline Mode' )
 						: __(
 								'{{a}}Activate Protect{{/a}} to keep your site protected from malicious sign in attempts.',
 								{
@@ -102,6 +102,6 @@ class DashProtect extends Component {
 
 export default connect( state => ( {
 	protectCount: getProtectCount( state ),
-	isDevMode: isDevMode( state ),
+	isOfflineMode: isOfflineMode( state ),
 	isModuleAvailable: isModuleAvailable( state, 'protect' ),
 } ) )( DashProtect );

@@ -111,7 +111,7 @@ Action types dispatched during the UI lifecycle are listed in `state/action-type
 * **getSettings( state )**
 * **getSiteAdminUrl( state )**
 * **getSiteConnectionStatus( state )**
-* **getSiteDevMode( state )**
+* **getSiteOfflineMode( state )**
 * **getSitePlan( state )**
 * **getSiteRawUrl( state )**
 * **getSiteRoles( state )**

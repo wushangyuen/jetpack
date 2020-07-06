@@ -18,11 +18,11 @@ import Card from 'components/card';
 import DashItem from 'components/dash-item';
 import QueryPluginUpdates from 'components/data/query-plugin-updates';
 import { getPluginUpdates } from 'state/at-a-glance';
-import { isDevMode } from 'state/connection';
+import { isOfflineMode } from 'state/connection';
 
 class DashPluginUpdates extends Component {
 	static propTypes = {
-		isDevMode: PropTypes.bool.isRequired,
+		isOfflineMode: PropTypes.bool.isRequired,
 		siteRawUrl: PropTypes.string.isRequired,
 		siteAdminUrl: PropTypes.string.isRequired,
 		pluginUpdates: PropTypes.any.isRequired,
@@ -84,7 +84,7 @@ class DashPluginUpdates extends Component {
 								__( 'Plugin needs updating.', 'Plugins need updating.', {
 									count: pluginUpdates.count,
 								} ) + ' ',
-								! this.props.isDevMode &&
+								! this.props.isOfflineMode &&
 									__( '{{a}}Turn on plugin autoupdates.{{/a}}', {
 										components: { a: <a href={ managePluginsUrl } /> },
 									} ),
@@ -92,7 +92,7 @@ class DashPluginUpdates extends Component {
 						: __( 'All plugins are up-to-date. Awesome work!' ) }
 				</p>
 			</DashItem>,
-			! this.props.isDevMode && (
+			! this.props.isOfflineMode && (
 				<Card
 					key="manage-plugins"
 					className="jp-dash-item__manage-in-wpcom"
@@ -119,5 +119,5 @@ class DashPluginUpdates extends Component {
 
 export default connect( state => ( {
 	pluginUpdates: getPluginUpdates( state ),
-	isDevMode: isDevMode( state ),
+	isOfflineMode: isOfflineMode( state ),
 } ) )( DashPluginUpdates );

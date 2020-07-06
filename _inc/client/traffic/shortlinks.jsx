@@ -31,7 +31,7 @@ class Shortlinks extends Component {
 						text: this.props.shortlinksModule.description,
 						link: getRedirectUrl( 'jetpack-support-shortlinks' ),
 					} }
-					disableInDevMode
+					disableInOfflineMode
 				>
 					<ModuleToggle
 						slug="shortlinks"

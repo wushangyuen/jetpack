@@ -33,7 +33,7 @@ class LoadingCard extends Component {
 				action="scan"
 			>
 				<SettingsGroup
-					disableInDevMode
+					disableInOfflineMode
 					module={ { module: 'backups' } }
 					support={ {
 						text: __(
@@ -52,13 +52,13 @@ class LoadingCard extends Component {
 
 class BackupsScanRewind extends Component {
 	static propTypes = {
-		isDevMode: PropTypes.bool,
+		isOfflineMode: PropTypes.bool,
 		siteRawUrl: PropTypes.string,
 		rewindState: PropTypes.string,
 	};
 
 	static defaultProps = {
-		isDevMode: false,
+		isOfflineMode: false,
 		siteRawUrl: '',
 		rewindState: '',
 	};
@@ -105,8 +105,8 @@ class BackupsScanRewind extends Component {
 	}
 
 	getCardText = () => {
-		if ( this.props.isDevMode ) {
-			return __( 'Unavailable in Dev Mode.' );
+		if ( this.props.isOfflineMode ) {
+			return __( 'Unavailable in Offline Mode.' );
 		}
 
 		const { title, icon, description, url } = this.getRewindMessage();
@@ -158,8 +158,8 @@ export const BackupsScan = withModuleSettingsFormHelpers(
 				planClass = getPlanClass( this.props.sitePlan.product_slug );
 			let cardText = '';
 
-			if ( this.props.isDevMode ) {
-				return __( 'Unavailable in Dev Mode.' );
+			if ( this.props.isOfflineMode ) {
+				return __( 'Unavailable in Offline Mode.' );
 			}
 
 			// We check if the features are active first, rather than the plan because it's possible the site is on a
@@ -257,7 +257,7 @@ export const BackupsScan = withModuleSettingsFormHelpers(
 				>
 					<QueryRewindStatus />
 					<SettingsGroup
-						disableInDevMode
+						disableInOfflineMode
 						module={ { module: 'backups' } }
 						support={ {
 							text: __(
@@ -269,7 +269,7 @@ export const BackupsScan = withModuleSettingsFormHelpers(
 					>
 						{ this.getCardText() }
 					</SettingsGroup>
-					{ ! this.props.isUnavailableInDevMode( 'backups' ) && scanEnabled && (
+					{ ! this.props.isUnavailableInOfflineMode( 'backups' ) && scanEnabled && (
 						<Card
 							compact
 							className="jp-settings-card__configure-link"

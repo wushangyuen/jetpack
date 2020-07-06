@@ -254,7 +254,7 @@ const SpeedUpSite = withModuleSettingsFormHelpers(
 								{ foundPhoton && (
 									<ModuleToggle
 										slug="photon"
-										disabled={ this.props.isUnavailableInDevMode( 'photon' ) }
+										disabled={ this.props.isUnavailableInOfflineMode( 'photon' ) }
 										activated={ this.props.getOptionValue( 'photon' ) }
 										toggling={ this.props.isSavingAnyOption( 'photon' ) }
 										toggleModule={ this.toggleModule }
@@ -297,7 +297,7 @@ const SpeedUpSite = withModuleSettingsFormHelpers(
 							</p>
 							<ModuleToggle
 								slug="lazy-images"
-								disabled={ this.props.isUnavailableInDevMode( 'lazy-images' ) }
+								disabled={ this.props.isUnavailableInOfflineMode( 'lazy-images' ) }
 								activated={ this.props.getOptionValue( 'lazy-images' ) }
 								toggling={ this.props.isSavingAnyOption( 'lazy-images' ) }
 								toggleModule={ this.toggleModule }

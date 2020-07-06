@@ -1110,11 +1110,12 @@ class Jetpack_Core_Json_Api_Endpoints {
 			'isActive'     => Jetpack::is_active(),
 			'isStaging'    => $status->is_staging_site(),
 			'isRegistered' => Jetpack::connection()->is_registered(),
-			'devMode'      => array(
+			'offlineMode'  => array(
 				'isActive' => $status->is_offline_mode(),
 				'constant' => defined( 'JETPACK_DEV_DEBUG' ) && JETPACK_DEV_DEBUG,
 				'url'      => site_url() && false === strpos( site_url(), '.' ),
-				'filter'   => apply_filters( 'jetpack_development_mode', false ),
+				/** This filter is documented in packages/status/src/class-status.php */
+				'filter'   => ( apply_filters( 'jetpack_development_mode', false ) || apply_filters( 'jetpack_offline_mode', false ) ), // jetpack_development_mode is deprecated.
 			),
 			)
 		);

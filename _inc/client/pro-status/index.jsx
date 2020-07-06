@@ -19,7 +19,7 @@ import { getSiteRawUrl, getSiteAdminUrl, getUpgradeUrl } from 'state/initial-sta
 import QuerySitePlugins from 'components/data/query-site-plugins';
 import QueryVaultPressData from 'components/data/query-vaultpress-data';
 import QueryAkismetKeyCheck from 'components/data/query-akismet-key-check';
-import { isDevMode } from 'state/connection';
+import { isOfflineMode } from 'state/connection';
 import { isFetchingPluginsData, isPluginActive, isPluginInstalled } from 'state/site/plugins';
 import {
 	getVaultPressScanThreatCount,
@@ -292,7 +292,7 @@ class ProStatus extends React.Component {
 				<QuerySitePlugins />
 				<QueryAkismetKeyCheck />
 				<QueryVaultPressData />
-				{ ! this.props.isDevMode &&
+				{ ! this.props.isOfflineMode &&
 					getStatus(
 						this.props.proFeature,
 						this.props.pluginActive( pluginSlug ),
@@ -318,7 +318,7 @@ export default connect( state => {
 		fetchingPluginsData: isFetchingPluginsData( state ),
 		pluginActive: plugin_slug => isPluginActive( state, plugin_slug ),
 		pluginInstalled: plugin_slug => isPluginInstalled( state, plugin_slug ),
-		isDevMode: isDevMode( state ),
+		isOfflineMode: isOfflineMode( state ),
 		fetchingSiteData: isFetchingSiteData( state ),
 		isAkismetKeyValid: isAkismetKeyValid( state ),
 		fetchingAkismetData: isFetchingAkismetData( state ),

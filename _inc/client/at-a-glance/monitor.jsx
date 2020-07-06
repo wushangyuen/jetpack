@@ -12,12 +12,12 @@ import getRedirectUrl from 'lib/jp-redirect';
  * Internal dependencies
  */
 import { isModuleAvailable } from 'state/modules';
-import { isDevMode } from 'state/connection';
+import { isOfflineMode } from 'state/connection';
 import DashItem from 'components/dash-item';
 
 class DashMonitor extends Component {
 	static propTypes = {
-		isDevMode: PropTypes.bool.isRequired,
+		isOfflineMode: PropTypes.bool.isRequired,
 		isModuleAvailable: PropTypes.bool.isRequired,
 	};
 
@@ -60,8 +60,8 @@ class DashMonitor extends Component {
 				className="jp-dash-item__is-inactive"
 			>
 				<p className="jp-dash-item__description">
-					{ this.props.isDevMode
-						? __( 'Unavailable in Dev Mode.' )
+					{ this.props.isOfflineMode
+						? __( 'Unavailable in Offline Mode.' )
 						: __(
 								'{{a}}Activate Monitor{{/a}} to receive email notifications if your site goes down.',
 								{
@@ -81,6 +81,6 @@ class DashMonitor extends Component {
 }
 
 export default connect( state => ( {
-	isDevMode: isDevMode( state ),
+	isOfflineMode: isOfflineMode( state ),
 	isModuleAvailable: isModuleAvailable( state, 'monitor' ),
 } ) )( DashMonitor );

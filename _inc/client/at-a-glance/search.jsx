@@ -17,7 +17,7 @@ import analytics from 'lib/analytics';
 import DashItem from 'components/dash-item';
 import Card from 'components/card';
 import JetpackBanner from 'components/jetpack-banner';
-import { isDevMode } from 'state/connection';
+import { isOfflineMode } from 'state/connection';
 import { getSitePlan, hasActiveSearchPurchase, isFetchingSitePurchases } from 'state/site';
 import { getUpgradeUrl } from 'state/initial-state';
 
@@ -50,12 +50,12 @@ class DashSearch extends Component {
 		getOptionValue: PropTypes.func.isRequired,
 
 		// Connected props
-		isDevMode: PropTypes.bool.isRequired,
+		isOfflineMode: PropTypes.bool.isRequired,
 	};
 
 	static defaultProps = {
 		getOptionValue: noop,
-		isDevMode: false,
+		isOfflineMode: false,
 	};
 
 	trackSearchLink() {
@@ -81,12 +81,12 @@ class DashSearch extends Component {
 			} );
 		}
 
-		if ( this.props.isDevMode ) {
+		if ( this.props.isOfflineMode ) {
 			return renderCard( {
 				className: 'jp-dash-item__is-inactive',
 				status: 'no-pro-uninstalled-or-inactive',
 				pro_inactive: true,
-				content: __( 'Unavailable in Dev Mode' ),
+				content: __( 'Unavailable in Offline Mode' ),
 			} );
 		}
 
@@ -167,7 +167,7 @@ class DashSearch extends Component {
 export default connect( state => {
 	return {
 		isBusinessPlan: 'is-business-plan' === getPlanClass( getSitePlan( state ).product_slug ),
-		isDevMode: isDevMode( state ),
+		isOfflineMode: isOfflineMode( state ),
 		isFetching: isFetchingSitePurchases( state ),
 		hasSearchProduct: hasActiveSearchPurchase( state ),
 		upgradeUrl: getUpgradeUrl( state, 'aag-search' ),
