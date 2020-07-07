@@ -185,4 +185,27 @@ class Status {
 		 */
 		return apply_filters( 'jetpack_is_staging_site', $is_staging );
 	}
+
+	/**
+	 * Returns a standard array of status information for use in API endpoints.
+	 *
+	 * Items can be added, but should not be removed or significantly changed to maintain compatibility.
+	 *
+	 * @since 8.8.0
+	 */
+	public function api_status_information() {
+		return array(
+			'isActive'     => ( class_exists( 'Jetpack' ) ) ? Jetpack::is_active() : false,
+			'isStaging'    => $this->is_staging_site(),
+			'isRegistered' => ( class_exists( 'Jetpack' ) ) ? Jetpack::connection()->is_registered() : false,
+			'offlineMode'  => array(
+				'isActive' => $this->is_offline_mode(),
+				'constant' => defined( 'JETPACK_DEV_DEBUG' ) && JETPACK_DEV_DEBUG,
+				'url'      => site_url() && false === strpos( site_url(), '.' ),
+				/** This filter is documented in packages/status/src/class-status.php */
+				'filter'   => ( apply_filters( 'jetpack_development_mode', false ) || apply_filters( 'jetpack_offline_mode', false ) ), // jetpack_development_mode is deprecated.
+			),
+			'isPublic'     => '1' == get_option( 'blog_public' ), // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+		);
+	}
 }

@@ -1105,20 +1105,7 @@ class Jetpack_Core_Json_Api_Endpoints {
 	 * @return bool True if site is connected
 	 */
 	public static function jetpack_connection_status() {
-		$status = new Status();
-		return rest_ensure_response( array(
-			'isActive'     => Jetpack::is_active(),
-			'isStaging'    => $status->is_staging_site(),
-			'isRegistered' => Jetpack::connection()->is_registered(),
-			'offlineMode'  => array(
-				'isActive' => $status->is_offline_mode(),
-				'constant' => defined( 'JETPACK_DEV_DEBUG' ) && JETPACK_DEV_DEBUG,
-				'url'      => site_url() && false === strpos( site_url(), '.' ),
-				/** This filter is documented in packages/status/src/class-status.php */
-				'filter'   => ( apply_filters( 'jetpack_development_mode', false ) || apply_filters( 'jetpack_offline_mode', false ) ), // jetpack_development_mode is deprecated.
-			),
-			)
-		);
+		return rest_ensure_response( ( new Status() )->api_status_information() );
 	}
 
 	/**
