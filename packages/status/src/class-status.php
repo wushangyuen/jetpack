@@ -195,9 +195,9 @@ class Status {
 	 */
 	public function api_status_information() {
 		return array(
-			'isActive'     => ( class_exists( 'Jetpack' ) ) ? Jetpack::is_active() : false,
+			'isActive'     => ( class_exists( 'Jetpack' ) ) ? \Jetpack::is_active() : false,
 			'isStaging'    => $this->is_staging_site(),
-			'isRegistered' => ( class_exists( 'Jetpack' ) ) ? Jetpack::connection()->is_registered() : false,
+			'isRegistered' => ( class_exists( 'Jetpack' ) ) ? \Jetpack::connection()->is_registered() : false,
 			'offlineMode'  => array(
 				'isActive' => $this->is_offline_mode(),
 				'constant' => defined( 'JETPACK_DEV_DEBUG' ) && JETPACK_DEV_DEBUG,
