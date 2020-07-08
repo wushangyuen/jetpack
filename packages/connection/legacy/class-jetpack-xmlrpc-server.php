@@ -751,20 +751,6 @@ class Jetpack_XMLRPC_Server {
 	}
 
 	/**
-	 * Returns any object that is able to be synced.
-	 *
-	 * @deprecated since 7.8.0
-	 * @see Automattic\Jetpack\Sync\Sender::sync_object()
-	 *
-	 * @param array $args the synchronized object parameters.
-	 * @return string Encoded sync object.
-	 */
-	public function sync_object( $args ) {
-		_deprecated_function( __METHOD__, 'jetpack-7.8', 'Automattic\\Jetpack\\Sync\\Sender::sync_object' );
-		return Sender::get_instance()->sync_object( $args );
-	}
-
-	/**
 	 * Returns the home URL and site URL for the current site which can be used on the WPCOM side for
 	 * IDC mitigation to decide whether sync should be allowed if the home and siteurl values differ between WPCOM
 	 * and the remote Jetpack site.

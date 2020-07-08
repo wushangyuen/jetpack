@@ -63,15 +63,6 @@ class Jetpack_Client_Server {
 		$this->do_exit();
 	}
 
-	/*
-	 * @deprecated 8.0 Use Automattic\Jetpack\Connection\Manager::authorize() instead.
-	 */
-	function authorize( $data = array() ) {
-		_deprecated_function( __METHOD__, 'jetpack-8.0', 'Automattic\\Jetpack\\Connection\\Manager::authorize' );
-		$manager = new Connection_Manager();
-		return $manager->authorize( $data );
-	}
-
 	public static function deactivate_plugin( $probable_file, $probable_title ) {
 		include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		if ( is_plugin_active( $probable_file ) ) {
@@ -90,16 +81,6 @@ class Jetpack_Client_Server {
 		}
 
 		return 0;
-	}
-
-	/**
-	 * @deprecated since 8.0.0 Use Automattic\Jetpack\Connection\Manager::get_token() instead.
-	 *
-	 * @return object|WP_Error
-	 */
-	function get_token( $data ) {
-		_deprecated_function( __METHOD__, 'jetpack-8.0', 'Automattic\\Jetpack\\Connection\\Manager\\get_token' );
-		return Jetpack::connection()->get_token( $data );
 	}
 
 	public function get_jetpack() {
