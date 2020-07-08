@@ -150,7 +150,7 @@ prepare_jetpack() {
 	# Symlink Jetpack into plugins directory
 	ln -s $WORKING_DIR $WP_CORE_DIR/wp-content/plugins/
 
-	zip -r $WP_CORE_DIR/wp-content/jetpack.zip $WORKING_DIR
+	zip -q -r $WP_CORE_DIR/wp-content/jetpack.zip $WORKING_DIR
 
 	# Symlink functionality plugin
 	ln -s $WORKING_DIR/tests/e2e/plugins/e2e-plan-data-interceptor.php $WP_CORE_DIR/wp-content/plugins/e2e-plan-data-interceptor.php
