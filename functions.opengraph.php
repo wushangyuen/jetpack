@@ -290,7 +290,7 @@ function jetpack_og_tags() {
  */
 function jetpack_og_get_image( $width = 200, $height = 200, $deprecated = null ) {
 	if ( ! empty( $deprecated ) ) {
-		_deprecated_argument( __FUNCTION__, '6.6.0' );
+		_deprecated_argument( __FUNCTION__, 'jetpack-6.6.0' );
 	}
 	$image = array();
 

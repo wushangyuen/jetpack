@@ -37,7 +37,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public function __construct( $ua = '' ) {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info from the `automattic/jetpack-device-detection` package' );
 		$this->ua_info = new User_Agent_Info( $ua );
 	}
 
@@ -49,7 +49,7 @@ class Jetpack_User_Agent_Info {
 	 * @return string The matched User Agent name, false otherwise.
 	 */
 	public function get_mobile_user_agent_name() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->get_mobile_user_agent_name from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->get_mobile_user_agent_name from the `automattic/jetpack-device-detection` package' );
 		return $this->ua_info->get_mobile_user_agent_name();
 	}
 
@@ -63,7 +63,7 @@ class Jetpack_User_Agent_Info {
 	 * @return string Name of the platform, false otherwise.
 	 */
 	public function get_platform() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->get_platform from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->get_platform from the `automattic/jetpack-device-detection` package' );
 		return $this->ua_info->get_platform();
 	}
 
@@ -74,7 +74,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public function isTierIphone() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->isTierIphone from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->isTierIphone from the `automattic/jetpack-device-detection` package' );
 		return $this->ua_info->isTierIphone();
 	}
 
@@ -86,7 +86,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public function isTierRichCss() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->isTierRichCss from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->isTierRichCss from the `automattic/jetpack-device-detection` package' );
 		return $this->ua_info->isTierRichCss();
 	}
 
@@ -99,7 +99,7 @@ class Jetpack_User_Agent_Info {
 	 * @return bool
 	 */
 	public static function is_tablet() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->is_tablet from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->is_tablet from the `automattic/jetpack-device-detection` package' );
 		return ( new User_Agent_Info() )->is_tablet();
 	}
 
@@ -109,7 +109,7 @@ class Jetpack_User_Agent_Info {
 	 *  @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_iphoneOrIpod() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->is_iphone_or_ipod from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info->is_iphone_or_ipod from the `automattic/jetpack-device-detection` package' );
 		return ( new User_Agent_Info() )->is_iphoneOrIpod();
 	}
 
@@ -128,7 +128,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_iphone_or_ipod( $type = 'iphone-any' ) {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_iphone_or_ipod from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_iphone_or_ipod from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_iphone_or_ipod( $type );
 	}
 
@@ -141,7 +141,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_chrome_for_iOS() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_chrome_for_iOS from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_chrome_for_iOS from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_chrome_for_iOS();
 	}
 
@@ -154,7 +154,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_twitter_for_iphone() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_twitter_for_iphone from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_twitter_for_iphone from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_twitter_for_iphone();
 	}
 
@@ -167,7 +167,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_twitter_for_ipad() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_twitter_for_ipad from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_twitter_for_ipad from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_twitter_for_ipad();
 	}
 
@@ -180,7 +180,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_facebook_for_iphone() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_facebook_for_iphone from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_facebook_for_iphone from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_facebook_for_iphone();
 	}
 
@@ -193,7 +193,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_facebook_for_ipad() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_facebook_for_ipad from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_facebook_for_ipad from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_facebook_for_ipad();
 	}
 
@@ -203,7 +203,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_wordpress_for_ios() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_wordpress_for_ios from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_wordpress_for_ios from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_wordpress_for_ios();
 	}
 
@@ -220,7 +220,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_ipad( $type = 'ipad-any' ) {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_ipad from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_ipad from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_ipad( $type );
 	}
 
@@ -234,7 +234,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_firefox_mobile() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_firefox_mobile from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_firefox_mobile from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_firefox_mobile();
 	}
 
@@ -248,7 +248,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_firefox_desktop() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_firefox_desktop from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_firefox_desktop from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_firefox_desktop();
 	}
 
@@ -260,7 +260,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_firefox_os() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_firefox_os from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_firefox_os from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_firefox_os();
 	}
 
@@ -279,7 +279,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_opera_mobile() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mobile from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mobile from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_opera_mobile();
 	}
 
@@ -298,7 +298,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_opera_mini() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mini from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mini from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_opera_mini();
 	}
 
@@ -309,7 +309,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_opera_mini_dumb() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mini_dumb from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mini_dumb from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_opera_mini_dumb();
 	}
 
@@ -322,7 +322,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_OperaMobile() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mini() or \Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mobile() from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mini() or \Automattic\Jetpack\Device_Detection\User_Agent_Info::is_opera_mobile() from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_OperaMobile();
 	}
 
@@ -333,7 +333,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_WindowsPhone7() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_WindowsPhone7 from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_WindowsPhone7 from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_WindowsPhone7();
 	}
 
@@ -344,7 +344,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_windows_phone_8() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_windows_phone_8 from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_windows_phone_8 from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_windows_phone_8();
 	}
 
@@ -358,7 +358,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_PalmWebOS() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_PalmWebOS from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_PalmWebOS from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_PalmWebOS();
 	}
 
@@ -371,7 +371,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_TouchPad() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_TouchPad from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_TouchPad from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_TouchPad();
 	}
 
@@ -388,7 +388,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_S60_OSSBrowser() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_S60_OSSBrowser from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_S60_OSSBrowser from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_S60_OSSBrowser();
 	}
 
@@ -398,7 +398,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_symbian_platform() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_symbian_platform from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_symbian_platform from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_symbian_platform();
 	}
 
@@ -410,7 +410,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_symbian_s40_platform() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_symbian_s40_platform from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_symbian_s40_platform from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_symbian_s40_platform();
 	}
 
@@ -422,7 +422,7 @@ class Jetpack_User_Agent_Info {
 	 * @return bool
 	 */
 	public static function is_J2ME_platform() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_J2ME_platform from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_J2ME_platform from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_J2ME_platform();
 	}
 
@@ -433,7 +433,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_MaemoTablet() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_MaemoTablet from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_MaemoTablet from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_MaemoTablet();
 	}
 
@@ -443,7 +443,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_MeeGo() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_MeeGo from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_MeeGo from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_MeeGo();
 	}
 
@@ -454,7 +454,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_webkit() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_webkit from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_webkit from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_webkit();
 	}
 
@@ -466,7 +466,7 @@ class Jetpack_User_Agent_Info {
 	 * @return boolean true if the browser is Android otherwise false
 	 */
 	public static function is_android() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_android from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_android from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_android();
 	}
 
@@ -480,7 +480,7 @@ class Jetpack_User_Agent_Info {
 	 * @return boolean true if the browser is Android and not 'mobile' otherwise false
 	 */
 	public static function is_android_tablet() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_android_tablet from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_android_tablet from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_android_tablet();
 	}
 
@@ -495,7 +495,7 @@ class Jetpack_User_Agent_Info {
 	 * @return boolean true if the browser is Kindle Fire Native browser otherwise false
 	 */
 	public static function is_kindle_fire() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_kindle_fire from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_kindle_fire from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_kindle_fire();
 	}
 
@@ -509,7 +509,7 @@ class Jetpack_User_Agent_Info {
 	 * @return boolean true if the browser is Kindle monochrome Native browser otherwise false
 	 */
 	public static function is_kindle_touch() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_kindle_touch from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_kindle_touch from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_kindle_touch();
 	}
 
@@ -520,7 +520,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_windows8_auth() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_windows8_auth from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_windows8_auth from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_windows8_auth();
 	}
 
@@ -530,7 +530,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_wordpress_for_win8() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_wordpress_for_win8 from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_wordpress_for_win8 from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_wordpress_for_win8();
 	}
 
@@ -540,7 +540,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_wordpress_desktop_app() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_wordpress_desktop_app from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_wordpress_desktop_app from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_wordpress_desktop_app();
 	}
 
@@ -552,7 +552,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_blackberry_tablet() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_blackberry_tablet from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_blackberry_tablet from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_blackberry_tablet();
 	}
 
@@ -563,7 +563,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_blackbeberry() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_blackbeberry from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_blackbeberry from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_blackbeberry();
 	}
 
@@ -573,7 +573,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_blackberry_10() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_blackberry_10 from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_blackberry_10 from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_blackberry_10();
 	}
 
@@ -595,7 +595,7 @@ class Jetpack_User_Agent_Info {
 	 * @return string Version of the BB OS. If version is not found, get_blackbeberry_OS_version will return boolean false.
 	 */
 	public static function get_blackbeberry_OS_version() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::get_blackbeberry_OS_version from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::get_blackbeberry_OS_version from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::get_blackbeberry_OS_version();
 	}
 
@@ -614,7 +614,7 @@ class Jetpack_User_Agent_Info {
 	 * @return string Type of the BB browser. If browser's version is not found, detect_blackbeberry_browser_version will return boolean false.
 	 */
 	public static function detect_blackberry_browser_version() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::detect_blackberry_browser_version from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::detect_blackberry_browser_version from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::detect_blackberry_browser_version();
 	}
 
@@ -626,7 +626,7 @@ class Jetpack_User_Agent_Info {
 	 * @return bool
 	 */
 	public static function is_mobile_app() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_mobile_app from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_mobile_app from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_mobile_app();
 	}
 
@@ -639,7 +639,7 @@ class Jetpack_User_Agent_Info {
 	 * @deprecated 8.7.0 Use Automattic\Jetpack\Device_Detection\User_Agent_Info
 	 */
 	public static function is_Nintendo_3DS() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_Nintendo_3DS from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_Nintendo_3DS from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_Nintendo_3DS();
 	}
 
@@ -651,7 +651,7 @@ class Jetpack_User_Agent_Info {
 	 * @return boolean
 	 */
 	public static function is_bot() {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_bot from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_bot from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_bot();
 	}
 
@@ -666,7 +666,7 @@ class Jetpack_User_Agent_Info {
 	 * @return boolean
 	 */
 	public static function is_bot_user_agent( $ua = null ) {
-		_deprecated_function( __METHOD__, 'Jetpack 8.7', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_bot_user_agent from the `automattic/jetpack-device-detection` package' );
+		_deprecated_function( __METHOD__, 'jetpack-8.7.0', '\Automattic\Jetpack\Device_Detection\User_Agent_Info::is_bot_user_agent from the `automattic/jetpack-device-detection` package' );
 		return User_Agent_Info::is_bot_user_agent( $ua );
 	}
 }
