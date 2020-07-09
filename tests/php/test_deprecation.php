@@ -25,34 +25,6 @@ class WP_Test_Jetpack_Deprecation extends WP_UnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provider_deprecated_file_paths
-	 */
-	function test_deprecated_file_paths( $file_path, $replacement_path, $error_level ) {
-		require_once JETPACK__PLUGIN_DIR . $file_path;
-
-		$this->assertDeprecatedFileError( $file_path, $replacement_path, $error_level );
-	}
-
-	public function assertDeprecatedFileError( $deprecated, $replacement, $errno ) {
-		foreach ( $this->errors as $error ) {
-			if ( $error['errno'] === $errno ) {
-				// The error uses only the file name, not the path. Remove relative path if present so they can match.
-				if ( false !== strrpos( $deprecated, DIRECTORY_SEPARATOR ) ) {
-					$deprecated = substr( $deprecated, strrpos( $deprecated, DIRECTORY_SEPARATOR ) + 1 );
-				}
-
-				if ( $error['errcontext']['file'] === $deprecated && $error['errcontext']['replacement'] === $replacement ) {
-					self::assertTrue( true );
-
-					return;
-				}
-			}
-
-		}
-		$this->fail( "Error for $deprecated not found" );
-	}
-
-	/**
 	 * @dataProvider provider_deprecated_method_stubs
 	 */
 	function test_deprecated_method_stubs( $class_name, $method_name ) {
@@ -146,32 +118,4 @@ class WP_Test_Jetpack_Deprecation extends WP_UnitTestCase {
 	function test_jetpack_sync_action_sender_exists() {
 		$this->assertTrue( property_exists( 'Jetpack_Sync_Actions', 'sender' ) );
 	}
-
-	/**
-	 * Provides deprecated files and expected relacements.
-	 *
-	 * @todo Remove replacement version check when WordPress 5.5 is the minimum.
-	 *
-	 * @return array
-	 */
-	function provider_deprecated_file_paths() {
-		global $wp_version;
-
-		$replacement = ( version_compare( $wp_version, '5.5-alpha', '>=' ) ) ? '' : null;
-
-		return array(
-
-			array(
-				'class.jetpack-ixr-client.php',
-				$replacement,
-				E_USER_DEPRECATED,
-			),
-			array(
-				'class.jetpack-xmlrpc-server.php',
-				$replacement,
-				E_USER_DEPRECATED,
-			),
-		);
-	}
-
 }
