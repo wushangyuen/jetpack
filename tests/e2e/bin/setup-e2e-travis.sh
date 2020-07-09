@@ -146,11 +146,24 @@ PHP
 }
 
 prepare_jetpack() {
-	cd "$WP_CORE_DIR"
-	# Symlink Jetpack into plugins directory
-	ln -s $WORKING_DIR $WP_CORE_DIR/wp-content/plugins/
+	TARGET_DIR="/tmp/jetpack"
 
-	zip -q -r $WP_CORE_DIR/wp-content/jetpack.zip $WORKING_DIR
+	cp -r $WORKING_DIR $TARGET_DIR
+
+	echo "Purging paths included in .svnignore, .gitignore and .git itself"
+	# check .svnignore
+	for file in $( cat "$TARGET_DIR/.svnignore" 2>/dev/null ); do
+			if [[ $file == "to-test.md" || $file == "docs/testing/testing-tips.md" ]]; then
+					continue
+			fi
+			rm -rf $TARGET_DIR/$file
+	done
+
+	zip -q -r $WP_CORE_DIR/wp-content/jetpack.zip $TARGET_DIR
+
+	# Symlink Jetpack into plugins directory
+	# ln -s $WORKING_DIR $WP_CORE_DIR/wp-content/plugins/
+	ln -s $TARGET_DIR $WP_CORE_DIR/wp-content/plugins/
 
 	# Symlink functionality plugin
 	ln -s $WORKING_DIR/tests/e2e/plugins/e2e-plan-data-interceptor.php $WP_CORE_DIR/wp-content/plugins/e2e-plan-data-interceptor.php
