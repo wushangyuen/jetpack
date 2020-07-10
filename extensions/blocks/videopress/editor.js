@@ -165,13 +165,12 @@ const addVideoPressSupport = ( settings, name ) => {
 					? wrapPaidBlock( {
 							requiredPlan: 'value_bundle',
 							customTitle: {
+								/* translators: Placeholder is the plan name, such as Jetpack Premium. */
 								knownPlan: __( 'Upgrade to %(planName)s to upload videos.', 'jetpack' ),
 								unknownPlan: __( 'Upgrade to a paid plan to upload videos.', 'jetpack' ),
 							},
 							customSubTitle: __(
-								'Upload unlimited videos to your website and \
-						display them using a fast, unbranded, \
-						customizable player.',
+								'Upload unlimited videos to your website and display them using a fast, unbranded, customizable player.',
 								'jetpack'
 							),
 					  } )( withVideoPressEdit( edit ) )

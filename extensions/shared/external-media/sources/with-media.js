@@ -173,6 +173,7 @@ export default function withMedia() {
 				// Announce the action with appended string of all the images' alt text.
 				speak(
 					sprintf(
+						/* translators: %s is an image's alt text. */
 						__( 'Inserting: %s', 'jetpack' ),
 						items
 							.map( item => item.title )

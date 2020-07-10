@@ -143,7 +143,11 @@ function OpenTableEdit( {
 			<>
 				<div className={ `${ defaultClassName }-overlay` }></div>
 				<iframe
-					title={ sprintf( __( 'Open Table Preview %s', 'jetpack' ), clientId ) }
+					title={ sprintf(
+						/* translators: Placeholder is a unique ID. */
+						__( 'Open Table Preview %s', 'jetpack' ),
+						clientId
+					) }
 					scrolling="no"
 					src={ `https://www.opentable.com/widget/reservation/canvas?rid=${ join(
 						rid,

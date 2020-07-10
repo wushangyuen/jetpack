@@ -257,7 +257,11 @@ const VideoPressEdit = CoreVideoEdit =>
 									/>
 									<p id={ videoPosterDescription } hidden>
 										{ poster
-											? sprintf( __( 'The current poster image url is %s', 'jetpack' ), poster )
+											? sprintf(
+													/* translators: Placeholder is an image URL. */
+													__( 'The current poster image url is %s', 'jetpack' ),
+													poster
+											  )
 											: __( 'There is no poster image currently selected', 'jetpack' ) }
 									</p>
 									{ !! poster && (
@@ -310,17 +314,19 @@ const VideoPressEdit = CoreVideoEdit =>
 							<SandBox html={ html } scripts={ scripts } />
 						</div>
 
-						{ /*
+						{
+							/*
 							Disable the video player when the block isn't selected,
 							so the user clicking on it won't play the
 							video when the controls are enabled.
 						*/
-						! interactive && (
-							<div
-								className="block-library-embed__interactive-overlay"
-								onMouseUp={ this.hideOverlay }
-							/>
-						) }
+							! interactive && (
+								<div
+									className="block-library-embed__interactive-overlay"
+									onMouseUp={ this.hideOverlay }
+								/>
+							)
+						}
 						{ ( ! RichText.isEmpty( caption ) || isSelected ) && (
 							<RichText
 								tagName="figcaption"
