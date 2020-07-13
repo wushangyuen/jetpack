@@ -24,13 +24,14 @@ const LegendItem = createReactClass( {
 		changeHandler: PropTypes.func.isRequired,
 	},
 
-	clickHandler: function() {
+	clickHandler: function () {
 		this.props.changeHandler( this.props.attr );
 	},
 
-	render: function() {
+	render: function () {
 		return (
 			<li className="dops-chart__legend-option">
+				{ /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */ }
 				<label
 					htmlFor="checkbox"
 					className="dops-chart__legend-label is-selectable"
@@ -44,6 +45,7 @@ const LegendItem = createReactClass( {
 					<span className={ this.props.className } />
 					{ this.props.label }
 				</label>
+				{ /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */ }
 			</li>
 		);
 	},
@@ -67,11 +69,11 @@ class Legend extends React.Component {
 	render() {
 		const legendColors = [ 'dops-chart__legend-color is-dark-blue' ],
 			activeTab = this.props.activeTab;
-		const legendItems = this.props.availableCharts.map( function( legendItem, index ) {
+		const legendItems = this.props.availableCharts.map( function ( legendItem, index ) {
 			const colorClass = legendColors[ index ],
 				checked = -1 !== this.props.activeCharts.indexOf( legendItem );
 			const tab = this.props.tabs
-				.filter( function( currentTab ) {
+				.filter( function ( currentTab ) {
 					return currentTab.attr === legendItem;
 				} )
 				.shift();
