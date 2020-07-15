@@ -148,29 +148,39 @@ PHP
 }
 
 prepare_jetpack() {
-	TARGET_DIR="/tmp/jetpack"
-
-	cp -r $WORKING_DIR $TARGET_DIR
-
-	echo "Purging paths included in .svnignore, .gitignore and .git itself"
-	# check .svnignore
-	for file in $( cat "$TARGET_DIR/.svnignore" 2>/dev/null ); do
-			if [[ $file == "to-test.md" || $file == "docs/testing/testing-tips.md" ]]; then
-					continue
-			fi
-			rm -rf $TARGET_DIR/$file
-	done
-
-	zip -q -r $WP_CORE_DIR/wp-content/jetpack.zip $TARGET_DIR
-
-	# Symlink Jetpack into plugins directory
+	# cd "$WP_CORE_DIR"
 	# ln -s $WORKING_DIR $WP_CORE_DIR/wp-content/plugins/
-	ln -s $TARGET_DIR $WP_CORE_DIR/wp-content/plugins/
 
-	# Symlink functionality plugin
+
+	# TARGET_DIR="/tmp/jetpack"
+
+	# cp -r $WORKING_DIR $TARGET_DIR
+
+	# echo "Purging paths included in .svnignore, .gitignore and .git itself"
+	# # check .svnignore
+	# for file in $( cat "$TARGET_DIR/.svnignore" 2>/dev/null ); do
+	# 		if [[ $file == "to-test.md" || $file == "docs/testing/testing-tips.md" ]]; then
+	# 				continue
+	# 		fi
+	# 		rm -rf $TARGET_DIR/$file
+	# done
+
+	# zip -q -r $WP_CORE_DIR/wp-content/jetpack.zip $TARGET_DIR
+
+	# # Symlink Jetpack into plugins directory
+	# # ln -s $WORKING_DIR $WP_CORE_DIR/wp-content/plugins/
+	# ln -s $TARGET_DIR $WP_CORE_DIR/wp-content/plugins/jetpack-dev
+
+# WP_CORE_DIR=${1-"/var/www/html"}
+# WORKING_DIR=${2-"$WP_CORE_DIR/wp-content/jetpack-dev"}
+
+	. "$WORKING_DIR/tests/e2e/bin/prep.sh $WP_CORE_DIR $WORKING_DIR"
+
+	# Symlink functionality plugins
 	ln -s $WORKING_DIR/tests/e2e/plugins/e2e-plan-data-interceptor.php $WP_CORE_DIR/wp-content/plugins/e2e-plan-data-interceptor.php
+	ln -s $WORKING_DIR/tests/e2e/plugins/e2e-plugin-updater.php $WP_CORE_DIR/wp-content/plugins/e2e-plugin-updater.php
 
-	wp plugin activate jetpack
+	wp plugin activate jetpack-dev
 	wp plugin activate e2e-plan-data-interceptor.php
 }
 
@@ -182,9 +192,8 @@ if [ "${1}" == "reset_wp" ]; then
 
 	wp --path=$WP_CORE_DIR db reset --yes
 	wp --path=$WP_CORE_DIR core install --url="$WP_SITE_URL" --title="E2E Gutenpack blocks" --admin_user=wordpress --admin_password=wordpress --admin_email=wordpress@example.com
-	wp --path=$WP_CORE_DIR plugin activate jetpack
+	wp --path=$WP_CORE_DIR plugin activate jetpack-dev
 	wp --path=$WP_CORE_DIR plugin activate e2e-plan-data-interceptor.php
-
 
 	# create a debug.log file
 	touch $WP_CORE_DIR/wp-content/debug.log
