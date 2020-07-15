@@ -202,13 +202,13 @@ setup_env() {
 	check_for_jq
 
 	start_ngrok
-	. "$(dirname "$0")/setup-docker-env.sh"
+	. "$(dirname "$0")/install-wordpress.sh"
 }
 
 reset_env() {
 	echo -e $(status_message "Resetting docker environment...")
 	restart_ngrok
-	. "$(dirname "$0")/setup-docker-env.sh"
+	. "$(dirname "$0")/install-wordpress.sh"
 }
 
 stop_docker() {

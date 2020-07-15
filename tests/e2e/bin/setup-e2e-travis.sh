@@ -118,28 +118,30 @@ install_wp() {
 
 	wp core download --version=$WP_VERSION
 	wp core config --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASS --dbhost=$DB_HOST --dbprefix=wp_ --extra-php <<PHP
-/* Change WP_MEMORY_LIMIT to increase the memory limit for public pages. */
-define('WP_MEMORY_LIMIT', '256M');
-define('SCRIPT_DEBUG', true);
-
 /* Tweak to fix TOO_MANY_REDIRECTS ngrok problem */
 if (isset(\$_SERVER['HTTP_X_FORWARDED_PROTO']) && \$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
     \$_SERVER['HTTPS'] = 'on';
 PHP
 
-	echo "Setting other wp-config.php constants..."
-	wp --allow-root config set WP_DEBUG true --raw --type=constant
-	wp --allow-root config set WP_DEBUG_LOG true --raw --type=constant
-	wp --allow-root config set WP_DEBUG_DISPLAY false --raw --type=constant
-	wp --allow-root config set JETPACK_BETA_BLOCKS true --raw --type=constant
+	# wp --allow-root config set WP_DEBUG true --raw --type=constant
 
-	# NOTE: Force classic connection flow
-	# https://github.com/Automattic/jetpack/pull/13288
-	wp --allow-root config set JETPACK_SHOULD_NOT_USE_CONNECTION_IFRAME true --raw --type=constant
+	echo "Setting up wp-config.php constants..."
+	# wp config set WP_MEMORY_LIMIT '256M' --raw --type=constant
+	# wp config set SCRIPT_DEBUG true --raw --type=constant
+	# wp config set WP_DEBUG true --raw --type=constant
+	# wp config set WP_DEBUG_LOG true --raw --type=constant
+	# wp config set WP_DEBUG_DISPLAY false --raw --type=constant
+	# wp config set JETPACK_BETA_BLOCKS true --raw --type=constant
 
-	wp db create
+	# # NOTE: Force classic connection flow
+	# # https://github.com/Automattic/jetpack/pull/13288
+	# wp config set JETPACK_SHOULD_NOT_USE_CONNECTION_IFRAME true --raw --type=constant
 
-	wp core install --url="$WP_SITE_URL" --title="E2E Gutenpack blocks" --admin_user=wordpress --admin_password=wordpress --admin_email=wordpress@example.com --path=$WP_CORE_DIR
+	# wp db create
+
+	# wp core install --url="$WP_SITE_URL" --title="E2E Gutenpack blocks" --admin_user=wordpress --admin_password=wordpress --admin_email=wordpress@example.com --path=$WP_CORE_DIR
+
+	. "$WORKING_DIR/tests/e2e/bin/cli-prep.sh http://localhost:$HOST_PORT"
 
 	# create a debug.log file
 	touch $WP_CORE_DIR/wp-content/debug.log
