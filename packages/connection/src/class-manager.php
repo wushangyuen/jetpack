@@ -93,9 +93,9 @@ class Manager {
 
 		if ( $manager->is_active() ) {
 			add_filter( 'xmlrpc_methods', array( $manager, 'public_xmlrpc_methods' ) );
-		} else {
-			add_action( 'rest_api_init', array( $manager, 'initialize_rest_api_registration_connector' ) );
 		}
+
+		add_action( 'rest_api_init', array( $manager, 'initialize_rest_api_registration_connector' ) );
 
 		add_action( 'jetpack_clean_nonces', array( $manager, 'clean_nonces' ) );
 		if ( ! wp_next_scheduled( 'jetpack_clean_nonces' ) ) {
@@ -808,7 +808,7 @@ class Manager {
 	 * WordPress.com.
 	 *
 	 * @param String $api_endpoint (optional) an API endpoint to use, defaults to 'register'.
-	 * @return Integer zero on success, or a bitmask on failure.
+	 * @return true|WP_Error The error object.
 	 */
 	public function register( $api_endpoint = 'register' ) {
 		add_action( 'pre_update_jetpack_option_register', array( '\\Jetpack_Options', 'delete_option' ) );
@@ -1459,6 +1459,18 @@ class Manager {
 		$this->delete_all_connection_tokens();
 
 		return true;
+	}
+
+	/**
+	 * Completely clearing up the connection, and initiating reconnect.
+	 *
+	 * @return true|WP_Error True if reconnected successfully, a `WP_Error` object otherwise.
+	 */
+	public function reconnect() {
+		$this->disconnect_site_wpcom( true );
+		$this->delete_all_connection_tokens( true );
+
+		return $this->register();
 	}
 
 	/**
