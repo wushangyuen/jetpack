@@ -141,7 +141,7 @@ PHP
 
 	# wp core install --url="$WP_SITE_URL" --title="E2E Gutenpack blocks" --admin_user=wordpress --admin_password=wordpress --admin_email=wordpress@example.com --path=$WP_CORE_DIR
 
-	. "$WORKING_DIR/tests/e2e/bin/cli-prep.sh $WP_SITE_URL"
+	. $WORKING_DIR/tests/e2e/bin/cli-prep.sh $WP_SITE_URL
 
 	# create a debug.log file
 	touch $WP_CORE_DIR/wp-content/debug.log
@@ -174,7 +174,7 @@ prepare_jetpack() {
 # WP_CORE_DIR=${1-"/var/www/html"}
 # WORKING_DIR=${2-"$WP_CORE_DIR/wp-content/jetpack-dev"}
 
-	. "$WORKING_DIR/tests/e2e/bin/prep.sh $WP_CORE_DIR $WORKING_DIR"
+	. $WORKING_DIR/tests/e2e/bin/prep.sh $WP_CORE_DIR $WORKING_DIR
 
 	# Symlink functionality plugins
 	ln -s $WORKING_DIR/tests/e2e/plugins/e2e-plan-data-interceptor.php $WP_CORE_DIR/wp-content/plugins/e2e-plan-data-interceptor.php
