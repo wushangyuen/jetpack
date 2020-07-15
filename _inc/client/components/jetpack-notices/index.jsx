@@ -21,15 +21,12 @@ import {
 	isInIdentityCrisis,
 	isCurrentUserLinked,
 	getConnectUrl as _getConnectUrl,
-	isReconnectingSite,
-	isFetchingConnectUrl,
 } from 'state/connection';
 import {
 	isDevVersion,
 	userCanConnectSite,
 	userIsSubscriber,
 	getConnectionErrors,
-	doNotUseConnectionIframe,
 } from 'state/initial-state';
 import { getSiteDataErrors } from 'state/site';
 import DismissableNotices from './dismissable';
@@ -37,7 +34,6 @@ import ConnectionBanner from 'components/connection-banner';
 import { JETPACK_CONTACT_BETA_SUPPORT } from 'constants/urls';
 import PlanConflictWarning from './plan-conflict-warning';
 import JetpackConnectionErrors from './jetpack-connection-errors';
-import AuthIframe from 'components/auth-iframe';
 
 export class DevVersionNotice extends React.Component {
 	static displayName = 'DevVersionNotice';
@@ -192,32 +188,8 @@ UserUnlinked.propTypes = {
 	siteConnected: PropTypes.bool.isRequired,
 };
 
-class Reconnect extends React.Component {
-	onAuthorized() {
-		window.location.reload();
-	}
-
-	render() {
-		if ( ! this.props.isConnectionIframeAllowed ) {
-			window.location.href = this.props.connectUrl;
-			return null;
-		}
-
-		return <AuthIframe onAuthorized={ this.onAuthorized } />;
-	}
-}
-
-Reconnect.propTypes = {
-	connectUrl: PropTypes.string.isRequired,
-	isConnectionIframeAllowed: PropTypes.bool.isRequired,
-};
-
 class JetpackNotices extends React.Component {
 	static displayName = 'JetpackNotices';
-
-	shouldShowReconnect() {
-		return this.props.reconnectingSite && ! this.props.fetchingConnectUrl && this.props.connectUrl;
-	}
 
 	render() {
 		const siteDataErrors = this.props.siteDataErrors.filter( error =>
@@ -263,13 +235,6 @@ class JetpackNotices extends React.Component {
 						) }
 					/>
 				) }
-
-				{ this.shouldShowReconnect() && (
-					<Reconnect
-						connectUrl={ this.props.connectUrl }
-						isConnectionIframeAllowed={ this.props.isConnectionIframeAllowed }
-					/>
-				) }
 			</div>
 		);
 	}
@@ -288,8 +253,5 @@ export default connect( state => {
 		isInIdentityCrisis: isInIdentityCrisis( state ),
 		connectionErrors: getConnectionErrors( state ),
 		siteDataErrors: getSiteDataErrors( state ),
-		reconnectingSite: isReconnectingSite( state ),
-		fetchingConnectUrl: isFetchingConnectUrl( state ),
-		isConnectionIframeAllowed: ! doNotUseConnectionIframe( state ),
 	};
 } )( JetpackNotices );
