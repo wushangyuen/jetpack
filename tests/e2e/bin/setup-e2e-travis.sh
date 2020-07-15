@@ -141,7 +141,7 @@ PHP
 
 	# wp core install --url="$WP_SITE_URL" --title="E2E Gutenpack blocks" --admin_user=wordpress --admin_password=wordpress --admin_email=wordpress@example.com --path=$WP_CORE_DIR
 
-	. "$WORKING_DIR/tests/e2e/bin/cli-prep.sh http://localhost:$HOST_PORT"
+	. "$WORKING_DIR/tests/e2e/bin/cli-prep.sh $WP_SITE_URL"
 
 	# create a debug.log file
 	touch $WP_CORE_DIR/wp-content/debug.log
