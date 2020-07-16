@@ -13,6 +13,7 @@ import { addFilter } from '@wordpress/hooks';
 import withCustomClassNames from '../with-custom-class-names';
 import jetpackPaidBlockEdit from './paid-block-edit';
 import { isUpgradable } from '../plan-utils';
+import { getPaidIcon, hasPaidIcon } from './paid-icons';
 import './editor.scss';
 
 const jetpackPaidBlock = ( settings, name ) => {
@@ -29,6 +30,7 @@ const jetpackPaidBlock = ( settings, name ) => {
 	return {
 		...settings,
 		edit: jetpackPaidBlockEdit( settings.edit ),
+		icon: getPaidIcon( settings, name ),
 	};
 };
 
